@@ -1,19 +1,18 @@
-package com.github.marschal66.tictactoe;
+package com.github.marschal66.tictactoe.main;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+/**
+ * The type Main application.
+ */
+public class MainApplication {
 
-import java.io.IOException;
-
-public class MainApplication extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-
-    }
-
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
-        launch();
+        // TODO: add GameApplicationManager
+        // TODO: add MultiThreading
+        GameApplication game = new GameApplication("[TicTacToe-000001] ");
     }
 }

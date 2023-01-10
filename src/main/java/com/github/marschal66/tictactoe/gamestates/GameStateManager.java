@@ -6,21 +6,77 @@
  * Author      : <a href="mailto:marschal66@web.de">Marschal66</a>
  * Copyright(c): Marschal66 2023
  */
-package com.github.marschal66.tictactoe;
+package com.github.marschal66.tictactoe.gamestates;
 
-import com.github.marschal66.tictactoe.gamestates.GameState;
+import com.github.marschal66.tictactoe.main.GameApplication;
 
+/**
+ * The type Game state manager.
+ */
 public class GameStateManager {
-    ///* ---- Konstante ------------------------------------------------------------ */
+    /**
+     * The Main.
+     */
+///* ---- Konstante ------------------------------------------------------------ */
     ///* ---- Attribute ------------------------------------------------------------ */
-    private GameState gameState;
-    ///* ---- Start ---------------------------------------------------------------- */
+    private final GameApplication main;
+    /**
+     * The Game states.
+     */
+    private final GameState[] gameStates;
+    /**
+     * The Current game state.
+     */
+    private GameState currentGameState;
+
+    /**
+     * Instantiates a new Game state manager.
+     *
+     * @param main the main
+     */
+///* ---- Start ---------------------------------------------------------------- */
     ///* ---- Konstruktor ---------------------------------------------------------- */
-    public GameStateManager(){
-        this.gameState = LobbyState;
+    public GameStateManager(GameApplication main) {
+        this.main = main;
+        gameStates = new GameState[3];
+
+        gameStates[GameState.LOBBY_STATE] = new LobbyState(this, main);
+        gameStates[GameState.INGAME_STATE] = new IngameState(this, main);
+        gameStates[GameState.ENDGAME_STATE] = new EndgameState(this, main);
     }
-    ///* ---- Initialisierung ------------------------------------------------------ */
+
+    /**
+     * Stop current game state.
+     */
+///* ---- Initialisierung ------------------------------------------------------ */
     ///* ---- Logik ---------------------------------------------------------------- */
-    ///* ---- get/is/set/add ------------------------------------------------------- */
+    public void stopCurrentGameState() {
+        if (currentGameState != null) {
+            currentGameState.stop();
+            currentGameState = null;
+        }
+    }
+
+    /**
+     * Sets game state.
+     *
+     * @param gameStateID the game state id
+     */
+///* ---- get/is/set/add ------------------------------------------------------- */
+    public void setGameState(int gameStateID) {
+        if (currentGameState != null) currentGameState.stop();
+        currentGameState = gameStates[gameStateID];
+        currentGameState.start();
+    }
+
+    /**
+     * Gets current game state.
+     *
+     * @return the current game state
+     */
+    public GameState getCurrentGameState() {
+        return currentGameState;
+    }
+
     ///* ---- create --------------------------------------------------------------- */
 }
