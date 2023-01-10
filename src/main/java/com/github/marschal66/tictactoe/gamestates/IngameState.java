@@ -25,7 +25,7 @@ public class IngameState extends GameState {
     ///* ---- Start ---------------------------------------------------------------- */
     @Override
     public void start() {
-
+        System.out.println("IngameState started");
     }
 
     /**
@@ -38,8 +38,6 @@ public class IngameState extends GameState {
 
     ///* ---- Konstruktor ---------------------------------------------------------- */
     public IngameState(GameStateManager gameStateManager, GameApplication gameApplication) {
-        System.out.println("IngameState started");
-
         this.gameStateManager = gameStateManager;
         this.gameApplication = gameApplication;
     }
