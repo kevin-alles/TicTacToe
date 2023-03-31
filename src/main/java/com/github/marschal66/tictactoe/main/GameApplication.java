@@ -14,34 +14,22 @@ import com.github.marschal66.tictactoe.logging.Logger;
 import com.github.marschal66.tictactoe.user.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * The type Game application.
- */
 public class GameApplication {
-    /**
-     * The Prefix.
-     */
 ///* ---- Konstante ------------------------------------------------------------ */
     private final Logger logger;
-    private final String prefix;
-    /**
-     * The Game state manager.
-     */
     private final GameStateManager gameStateManager;
+    private final Integer id;
     ///* ---- Attribute ------------------------------------------------------------ */
-    private final ArrayList<Player> players = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
 
-    /**
-     * Instantiates a new Game application.
-     *
-     * @param prefix the prefix
-     */
-///* ---- Start ---------------------------------------------------------------- */
+    ///* ---- Start ---------------------------------------------------------------- */
     ///* ---- Konstruktor ---------------------------------------------------------- */
-    public GameApplication(String prefix) {
-        this.prefix = prefix;
-        this.logger = new Logger(this.prefix, true);
+    public GameApplication(Integer id) {
+        this.id = id;
+        this.logger = new Logger("[TicTacToe-" + id + "] ", true);
+        getLogger().log("Game started");
 
         // create GameStateManager and start Manager
         this.gameStateManager = new GameStateManager(this);
@@ -51,16 +39,16 @@ public class GameApplication {
     ///* ---- Initialisierung ------------------------------------------------------ */
     ///* ---- Logik ---------------------------------------------------------------- */
     public void endGame() {
+        getLogger().log("Game ended");
         System.exit(0);
     }
-    ///* ---- get/is/set/add ------------------------------------------------------- */
 
-    /**
-     * Gets prefix.
-     *
-     * @return the prefix
-     */
-    public ArrayList<Player> getPlayers() {
+    ///* ---- get/is/set/add ------------------------------------------------------- */
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public List<Player> getPlayers() {
         return players;
     }
     ///* ---- create --------------------------------------------------------------- */

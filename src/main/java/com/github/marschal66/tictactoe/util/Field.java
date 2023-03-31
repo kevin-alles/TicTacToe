@@ -14,19 +14,19 @@ import java.util.HashMap;
 
 public class Field {
     ///* ---- Konstante ------------------------------------------------------------ */
-    private final GameApplication gameApplication;
+    private final GameApplication main;
     ///* ---- Attribute ------------------------------------------------------------ */
     private final HashMap<Integer, Symbol> field;
 
     ///* ---- Start ---------------------------------------------------------------- */
     ///* ---- Konstruktor ---------------------------------------------------------- */
-    public Field(GameApplication gameApplication) {
-        this.gameApplication = gameApplication;
-        System.out.println(gameApplication.getPrefix() + "create new field");
+    public Field(GameApplication main) {
+        this.main = main;
 
+        main.getLogger().log("Empty Field created");
         field = new HashMap<>();
         for (int i = 0; i < 9; i++) {
-            field.put(i, Symbol.EMPTY);
+            setSymbol(i, Symbol.EMPTY);
         }
     }
 
@@ -34,11 +34,31 @@ public class Field {
     ///* ---- Logik ---------------------------------------------------------------- */
     ///* ---- get/is/set/add ------------------------------------------------------- */
     public void setSymbol(int position, Symbol symbol) {
+        main.getLogger().log("Symbol " + (symbol == Symbol.EMPTY ? "EMPTY" : symbol) + " set at position " + position);
         field.put(position, symbol);
     }
 
     public Symbol getSymbol(int position) {
         return field.get(position);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("---------------------\n");
+        for (int i = 0; i < 9; i++) {
+            stringBuilder.append(field.get(i) == Symbol.EMPTY ? i : field.get(i));
+            if (i % 3 == 2) {
+                stringBuilder.append("\n");
+            } else {
+                stringBuilder.append("|");
+            }
+            if (i == 2 || i == 5) {
+                stringBuilder.append("-----\n");
+            }
+        }
+        stringBuilder.append("---------------------\n");
+        return stringBuilder.toString();
     }
     ///* ---- create --------------------------------------------------------------- */
 }

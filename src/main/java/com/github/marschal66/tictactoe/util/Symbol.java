@@ -10,21 +10,28 @@ package com.github.marschal66.tictactoe.util;
 
 public enum Symbol {
     ///* ---- Konstante ------------------------------------------------------------ */
-    EMPTY(0),
-    CROSS(1),
-    CIRCLE(2);
+    EMPTY(0, " "),
+    CROSS(1, "X"),
+    CIRCLE(2, "#");
     ///* ---- Attribute ------------------------------------------------------------ */
     private final int id;
+    private final String printedSymbol;
 
     ///* ---- Start ---------------------------------------------------------------- */
     ///* ---- Konstruktor ---------------------------------------------------------- */
-    Symbol(int id) {
+    Symbol(int id, String printedSymbol) {
         this.id = id;
+        this.printedSymbol = printedSymbol;
     }
 
     ///* ---- Initialisierung ------------------------------------------------------ */
     ///* ---- Logik ---------------------------------------------------------------- */
     ///* ---- get/is/set/add ------------------------------------------------------- */
+    @Override
+    public String toString() {
+        return this.printedSymbol;
+    }
+
     public int getID() {
         return this.id;
     }

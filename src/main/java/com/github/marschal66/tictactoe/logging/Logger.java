@@ -36,7 +36,7 @@ public class Logger {
     }
 
     public void log(String message, boolean eol, String prefix) {
-        System.out.println(prefix + message + (eol ? "\n" : ""));
+        System.out.print(prefix + message + (eol ? "\n" : ""));
     }
 
     ///* ---- get/is/set/add ------------------------------------------------------- */

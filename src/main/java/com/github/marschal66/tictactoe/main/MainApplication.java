@@ -13,6 +13,6 @@ public class MainApplication {
     public static void main(String[] args) {
         // TODO: add GameApplicationManager
         // TODO: add MultiThreading
-        GameApplication game = new GameApplication("[TicTacToe-000001] ");
+        GameApplication game = new GameApplication(1);
     }
 }

@@ -10,32 +10,16 @@ package com.github.marschal66.tictactoe.user;
 
 import com.github.marschal66.tictactoe.util.Symbol;
 
-/**
- * The type Player.
- */
+import java.util.Scanner;
+
 public class Player {
-    /**
-     * The id.
-     */
-///* ---- Konstante ------------------------------------------------------------ */
+    ///* ---- Konstante ------------------------------------------------------------ */
     ///* ---- Attribute ------------------------------------------------------------ */
     private final long id;
-    /**
-     * The Symbol.
-     */
     private Symbol symbol = Symbol.EMPTY;
-    /**
-     * The Name.
-     */
     private final String name;
 
-    /**
-     * Instantiates a new Player.
-     *
-     * @param id   the uid
-     * @param name the name
-     */
-///* ---- Start ---------------------------------------------------------------- */
+    ///* ---- Start ---------------------------------------------------------------- */
     ///* ---- Konstruktor ---------------------------------------------------------- */
     public Player(long id, String name) {
         this.id = id;
@@ -46,44 +30,34 @@ public class Player {
     ///* ---- Logik ---------------------------------------------------------------- */
     ///* ---- get/is/set/add ------------------------------------------------------- */
 
-    /**
-     * Sets symbol.
-     *
-     * @param symbol the symbol
-     */
     public void setSymbol(Symbol symbol) {
         this.symbol = symbol;
     }
 
-    /**
-     * Gets uid.
-     *
-     * @return the uid
-     */
     public long getID() {
         return this.id;
     }
 
-    /**
-     * Gets name.
-     *
-     * @return the name
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Gets symbol.
-     *
-     * @return the symbol
-     */
     public Symbol getSymbol() {
         // throw error if symbol is not set
         if (symbol.equals(Symbol.EMPTY) || symbol == null)
             // TODO: handle Exception
             throw new NullPointerException();
         return symbol;
+    }
+
+    public Integer getInput(String message) {
+        Scanner scanner = new Scanner(System.in);
+        sendMessage(message);
+        return scanner.nextInt();
+    }
+
+    public void sendMessage(String message) {
+        System.out.println("[" + getName() + "] " + message);
     }
     ///* ---- create --------------------------------------------------------------- */
 }

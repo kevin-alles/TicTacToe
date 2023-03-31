@@ -16,15 +16,11 @@ public abstract class GameState {
      * The constant LOBBY_STATE.
      */
 ///* ---- Konstante ------------------------------------------------------------ */
-    public static final int LOBBY_STATE = 0,
-    /**
-     * The Ingame state.
-     */
-    INGAME_STATE = 1,
-    /**
-     * The Endgame state.
-     */
-    ENDGAME_STATE = 2;
+    public static final int LOBBY_STATE = 0;
+    public static final int INGAME_STATE = 1;
+    public static final int ENDGAME_STATE = 2;
+
+    protected static int default_timer = 5;
 
     /**
      * Start.

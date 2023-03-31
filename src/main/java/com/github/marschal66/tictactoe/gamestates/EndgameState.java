@@ -23,17 +23,17 @@ public class EndgameState extends GameState {
 ///* ---- Konstante ------------------------------------------------------------ */
     ///* ---- Attribute ------------------------------------------------------------ */
     private final GameStateManager gameStateManager;
-    private final GameApplication gameApplication;
+    private final GameApplication main;
 
     ///* ---- Start ---------------------------------------------------------------- */
     @Override
     public void start() {
         new Timer().scheduleAtFixedRate(new TimerTask() {
-            int i = 5;
+            int i = default_timer;
 
             @Override
             public void run() {
-                System.out.println(i + " Second" + (i == 1 ? " " : "s ") + "to end");
+                main.getLogger().log("Ending game in " + i + " second" + (i == 1 ? "" : "s"));
                 i--;
                 if (i <= 0) {
                     gameStateManager.stopCurrentGameState();
@@ -48,13 +48,13 @@ public class EndgameState extends GameState {
      */
     @Override
     public void stop() {
-        gameApplication.endGame();
+        main.endGame();
     }
 
     ///* ---- Konstruktor ---------------------------------------------------------- */
-    public EndgameState(GameStateManager gameStateManager, GameApplication gameApplication) {
+    public EndgameState(GameStateManager gameStateManager, GameApplication main) {
         this.gameStateManager = gameStateManager;
-        this.gameApplication = gameApplication;
+        this.main = main;
     }
     ///* ---- Initialisierung ------------------------------------------------------ */
     ///* ---- Logik ---------------------------------------------------------------- */
