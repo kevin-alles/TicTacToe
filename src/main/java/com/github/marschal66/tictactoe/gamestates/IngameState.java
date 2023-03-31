@@ -9,6 +9,10 @@
 package com.github.marschal66.tictactoe.gamestates;
 
 import com.github.marschal66.tictactoe.main.GameApplication;
+import com.github.marschal66.tictactoe.user.Player;
+import com.github.marschal66.tictactoe.util.Field;
+
+import java.util.ArrayList;
 
 /**
  * The type Ingame state.
@@ -18,14 +22,22 @@ public class IngameState extends GameState {
      * Start.
      */
 ///* ---- Konstante ------------------------------------------------------------ */
-    ///* ---- Attribute ------------------------------------------------------------ */
     private final GameStateManager gameStateManager;
     private final GameApplication gameApplication;
+    ///* ---- Attribute ------------------------------------------------------------ */
+    private ArrayList<Player> players;
+    private Field field;
 
     ///* ---- Start ---------------------------------------------------------------- */
     @Override
     public void start() {
         System.out.println("IngameState started");
+        players = gameApplication.getPlayers();
+
+        // TODO: create new Field
+        this.field = new Field(gameApplication);
+        // TODO: turns
+        gameHandler();
     }
 
     /**
@@ -41,8 +53,22 @@ public class IngameState extends GameState {
         this.gameStateManager = gameStateManager;
         this.gameApplication = gameApplication;
     }
+
     ///* ---- Initialisierung ------------------------------------------------------ */
     ///* ---- Logik ---------------------------------------------------------------- */
+    private void gameHandler() {
+        int currentPlayerIndex = 0;
+        while (!turn(players.get(currentPlayerIndex))) {
+            currentPlayerIndex = currentPlayerIndex == 0 ? 1 : 0;
+        }
+
+    }
+
+    private boolean turn(Player player) {
+        // true => win
+        return true;
+        // false => next turn
+    }
     ///* ---- get/is/set/add ------------------------------------------------------- */
     ///* ---- create --------------------------------------------------------------- */
 }

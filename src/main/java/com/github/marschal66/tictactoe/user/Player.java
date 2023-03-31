@@ -15,11 +15,11 @@ import com.github.marschal66.tictactoe.util.Symbol;
  */
 public class Player {
     /**
-     * The Uid.
+     * The id.
      */
 ///* ---- Konstante ------------------------------------------------------------ */
     ///* ---- Attribute ------------------------------------------------------------ */
-    private final long uid;
+    private final long id;
     /**
      * The Symbol.
      */
@@ -32,13 +32,13 @@ public class Player {
     /**
      * Instantiates a new Player.
      *
-     * @param uid  the uid
+     * @param id   the uid
      * @param name the name
      */
 ///* ---- Start ---------------------------------------------------------------- */
     ///* ---- Konstruktor ---------------------------------------------------------- */
-    public Player(long uid, String name) {
-        this.uid = uid;
+    public Player(long id, String name) {
+        this.id = id;
         this.name = name;
     }
 
@@ -60,8 +60,8 @@ public class Player {
      *
      * @return the uid
      */
-    public long getUID() {
-        return this.uid;
+    public long getID() {
+        return this.id;
     }
 
     /**

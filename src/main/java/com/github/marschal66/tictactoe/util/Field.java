@@ -1,32 +1,44 @@
 /*
  * Project     : TicTacToe
- * Classname   : Symbol
+ * Classname   : Field
  * Version     : 1
- * Date        : 09.01.2023 21:32
+ * Date        : 10.01.2023 13:43
  * Author      : <a href="mailto:marschal66@web.de">Marschal66</a>
  * Copyright(c): Marschal66 2023
  */
 package com.github.marschal66.tictactoe.util;
 
-public enum Symbol {
+import com.github.marschal66.tictactoe.main.GameApplication;
+
+import java.util.HashMap;
+
+public class Field {
     ///* ---- Konstante ------------------------------------------------------------ */
-    EMPTY(0),
-    CROSS(1),
-    CIRCLE(2);
+    private final GameApplication gameApplication;
     ///* ---- Attribute ------------------------------------------------------------ */
-    private final int id;
+    private final HashMap<Integer, Symbol> field;
 
     ///* ---- Start ---------------------------------------------------------------- */
     ///* ---- Konstruktor ---------------------------------------------------------- */
-    Symbol(int id) {
-        this.id = id;
+    public Field(GameApplication gameApplication) {
+        this.gameApplication = gameApplication;
+        System.out.println(gameApplication.getPrefix() + "create new field");
+
+        field = new HashMap<>();
+        for (int i = 0; i < 9; i++) {
+            field.put(i, Symbol.EMPTY);
+        }
     }
 
     ///* ---- Initialisierung ------------------------------------------------------ */
     ///* ---- Logik ---------------------------------------------------------------- */
     ///* ---- get/is/set/add ------------------------------------------------------- */
-    public int getID() {
-        return this.id;
+    public void setSymbol(int position, Symbol symbol) {
+        field.put(position, symbol);
+    }
+
+    public Symbol getSymbol(int position) {
+        return field.get(position);
     }
     ///* ---- create --------------------------------------------------------------- */
 }

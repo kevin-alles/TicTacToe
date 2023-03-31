@@ -10,6 +10,7 @@ package com.github.marschal66.tictactoe.main;
 
 import com.github.marschal66.tictactoe.gamestates.GameState;
 import com.github.marschal66.tictactoe.gamestates.GameStateManager;
+import com.github.marschal66.tictactoe.logging.Logger;
 import com.github.marschal66.tictactoe.user.Player;
 
 import java.util.ArrayList;
@@ -22,12 +23,13 @@ public class GameApplication {
      * The Prefix.
      */
 ///* ---- Konstante ------------------------------------------------------------ */
-    ///* ---- Attribute ------------------------------------------------------------ */
-    private final String PREFIX;
+    private final Logger logger;
+    private final String prefix;
     /**
      * The Game state manager.
      */
     private final GameStateManager gameStateManager;
+    ///* ---- Attribute ------------------------------------------------------------ */
     private final ArrayList<Player> players = new ArrayList<>();
 
     /**
@@ -38,15 +40,19 @@ public class GameApplication {
 ///* ---- Start ---------------------------------------------------------------- */
     ///* ---- Konstruktor ---------------------------------------------------------- */
     public GameApplication(String prefix) {
-        this.PREFIX = prefix;
-        System.out.println(getPrefix() + "Game started");
-        this.gameStateManager = new GameStateManager(this);
-        // set default GameState
-        gameStateManager.setGameState(GameState.LOBBY_STATE);
+        this.prefix = prefix;
+        this.logger = new Logger(this.prefix, true);
 
+        // create GameStateManager and start Manager
+        this.gameStateManager = new GameStateManager(this);
+        gameStateManager.setGameState(GameState.LOBBY_STATE);
     }
-///* ---- Initialisierung ------------------------------------------------------ */
+
+    ///* ---- Initialisierung ------------------------------------------------------ */
     ///* ---- Logik ---------------------------------------------------------------- */
+    public void endGame() {
+        System.exit(0);
+    }
     ///* ---- get/is/set/add ------------------------------------------------------- */
 
     /**
@@ -56,14 +62,6 @@ public class GameApplication {
      */
     public ArrayList<Player> getPlayers() {
         return players;
-    }
-
-    public String getPrefix() {
-        // throw Error if Prefix not available
-        if (this.PREFIX == null)
-            // TODO: handle Exception
-            throw new NullPointerException();
-        return this.PREFIX;
     }
     ///* ---- create --------------------------------------------------------------- */
 }

@@ -10,6 +10,9 @@ package com.github.marschal66.tictactoe.gamestates;
 
 import com.github.marschal66.tictactoe.main.GameApplication;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * The type Endgame state.
  */
@@ -25,7 +28,19 @@ public class EndgameState extends GameState {
     ///* ---- Start ---------------------------------------------------------------- */
     @Override
     public void start() {
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            int i = 5;
 
+            @Override
+            public void run() {
+                System.out.println(i + " Second" + (i == 1 ? " " : "s ") + "to end");
+                i--;
+                if (i <= 0) {
+                    gameStateManager.stopCurrentGameState();
+                    this.cancel();
+                }
+            }
+        }, 0, 1000);
     }
 
     /**
@@ -33,7 +48,7 @@ public class EndgameState extends GameState {
      */
     @Override
     public void stop() {
-
+        gameApplication.endGame();
     }
 
     ///* ---- Konstruktor ---------------------------------------------------------- */

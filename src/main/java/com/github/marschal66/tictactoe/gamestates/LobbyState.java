@@ -55,13 +55,8 @@ public class LobbyState extends GameState {
             }
         }
 
-        if (new Random().nextBoolean()) {
-            gameApplication.getPlayers().get(0).setSymbol(Symbol.CROSS);
-            gameApplication.getPlayers().get(1).setSymbol(Symbol.CIRCLE);
-        } else {
-            gameApplication.getPlayers().get(0).setSymbol(Symbol.CIRCLE);
-            gameApplication.getPlayers().get(1).setSymbol(Symbol.CROSS);
-        }
+        gameApplication.getPlayers().get(0).setSymbol(new Random().nextBoolean() ? Symbol.CROSS : Symbol.CIRCLE);
+        gameApplication.getPlayers().get(1).setSymbol(gameApplication.getPlayers().get(0).getSymbol() == Symbol.CROSS ? Symbol.CIRCLE : Symbol.CROSS);
 
         new Timer().scheduleAtFixedRate(new TimerTask() {
             int i = 5;
